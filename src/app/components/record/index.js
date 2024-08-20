@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { ButtonRecord } from "./ButtonRecord";
+import { ButtonPlay } from "./ButtonPlay";
 
 export const RecordAudio = () => {
-  const [urlAudi, setUrlAudio] = useState([]);
+  const [urlAudi, setUrlAudio] = useState();
 
   const {
     startRecording,
@@ -20,20 +21,19 @@ export const RecordAudio = () => {
   useEffect(() => {
     if (recordingBlob) {
       const url = URL.createObjectURL(recordingBlob);
-      setUrlAudio(old => ([
-        ...old,
-        url
-      ]));
+      setUrlAudio(url);
     }
   }, [recordingBlob]);
 
   return (
     <>
-      {urlAudi.map((urlA) => {
-        return <audio controls src={urlA} key={urlA} />;
-      })}
-
-      <ButtonRecord {...{ startRecording, stopRecording, isRecording }} />
+      <div className="gap-4  flex flex-col justify-center items-center">
+        <ButtonRecord {...{ startRecording, stopRecording, isRecording }} />
+        <ButtonPlay
+          {...{ startRecording, stopRecording, isRecording }}
+          audioUrl={urlAudi}
+        />
+      </div>
     </>
   );
 };
