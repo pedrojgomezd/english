@@ -6,14 +6,16 @@ import {
   CiStop1,
 } from "react-icons/ci";
 
-export const ButtonPlay = ({ isRecording = false, audioUrl }) => {
+export const ButtonPlay = ({ isRecording = false, audioUrl, videoRef }) => {
   const audioRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
     if (isPlaying) {
       audioRef.current?.play();
+      videoRef.current?.target.pauseVideo()
     } else {
       audioRef.current?.pause();
+      videoRef.current?.target.playVideo()
     }
   }, [isPlaying, audioRef]);
   return (
