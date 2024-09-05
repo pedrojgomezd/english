@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { ButtonRecord } from "./ButtonRecord";
 
+<<<<<<< HEAD
 export const RecordAudio = ({ videoRef }) => {
   const [urlAudi, setUrlAudio] = useState();
+=======
+export const RecordAudio = () => {
+  const [urlAudi, setUrlAudio] = useState([]);
+>>>>>>> parent of c19b744 (Audi play)
 
   const {
     startRecording,
@@ -35,6 +40,7 @@ export const RecordAudio = ({ videoRef }) => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="gap-4  flex flex-col justify-center items-center">
         <ButtonRecord {...{ startRecording, stopRecording, isRecording }} />
         <ButtonPlay
@@ -43,6 +49,13 @@ export const RecordAudio = ({ videoRef }) => {
           videoRef={videoRef}
         />
       </div>
+=======
+      {urlAudi.map((urlA) => {
+        return <audio controls src={urlA} key={urlA} />;
+      })}
+
+      <ButtonRecord {...{ startRecording, stopRecording, isRecording }} />
+>>>>>>> parent of c19b744 (Audi play)
     </>
   );
 };
