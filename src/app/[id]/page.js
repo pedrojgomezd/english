@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { RecordAudio } from "../components/record";
 import YouTube from "react-youtube";
+import { Alert, Dropdown } from "flowbite-react";
 
 export default function Detail() {
   const [url, setUrl] = useState("wqILKzVFJTY");
@@ -27,7 +28,9 @@ export default function Detail() {
         }}
       />
       <RecordAudio videoRef={videoRef} />
-
+      <Alert color="info">
+      <span className="font-medium">Info alert!</span> Change a few things up and try submitting again.
+    </Alert>
     </main>
   );
 }

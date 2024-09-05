@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { ButtonRecord } from "./ButtonRecord";
-import { ButtonPlay } from "./ButtonPlay";
 
 export const RecordAudio = ({ videoRef }) => {
   const [urlAudi, setUrlAudio] = useState();
@@ -21,7 +20,10 @@ export const RecordAudio = ({ videoRef }) => {
   useEffect(() => {
     if (recordingBlob) {
       const url = URL.createObjectURL(recordingBlob);
-      setUrlAudio(url);
+      setUrlAudio(old => ([
+        ...old,
+        url
+      ]));
     }
   }, [recordingBlob]);
 
